@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+require("dotenv").config()
 const connection = mongoose.connect(
-  "mongodb+srv://aditya1234:aditya_12345@cluster0.p5roukv.mongodb.net/cointab?retryWrites=true&w=majority"
+  process.env.Mongo_URL
 );
 
 const UserSchema =new mongoose.Schema({
