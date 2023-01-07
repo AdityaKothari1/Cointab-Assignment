@@ -4,26 +4,35 @@ import axios from "axios"
 import { useState } from 'react'
 import { useEffect } from 'react'
 import Pagination from './Pagination'
+import { Box, Select } from '@chakra-ui/react'
 const User = () => {
     const [data,setData]=useState([])
     const [page,setPage]=useState(1)
     const [totalPages,setTotal]=useState(1)
- 
+     const [gender,setGender]=useState("")
     useEffect(()=>{
-         axios.get(`http://localhost:8000/getuser?page=${page}`).then((res)=>{
+         axios.get(`http://localhost:8000/getuser?page=${page}&gender=${gender}`).then((res)=>{
            setData(res.data.data)
            setTotal(res.data.totalPages)
          })
-    },[page])
+    },[page,gender])
   return (
     <div>
-         {/* <div>
-            <select name="" id="" onChange={(e)=>setGender(e.target.value)}>
+         <Box>
+            <Select 
+             bg='teal'
+             borderColor='none'
+             color='black'
+             fontSize="20px"
+             width="20%"
+             margin="20px"
+             marginLeft="5%"
+             name="" id="" onChange={(e)=>setGender(e.target.value)}>
                 <option value="">Filter By Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
-            </select>
-         </div> */}
+            </Select>
+         </Box>
         <table>
             <thead>
             <tr>   

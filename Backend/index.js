@@ -17,13 +17,21 @@ app.post("/adduser",(req,res)=>{
 
 app.get("/getuser",async(req,res)=>{
     const page = req.query.page||1;
-    // const gender=req?.query?.gender
+    const gender=req?.query?.gender
     const resultsPerPage = 10;
     const skip = (page - 1) * resultsPerPage;
     const count= await UserModal.count()
-    const result= await UserModal.find().skip(skip).limit(resultsPerPage)
     const totalPages = Math.ceil(count / resultsPerPage);
-    res.send({data:result,totalPages:totalPages})
+    if(!gender){
+        const result= await UserModal.find().skip(skip).limit(resultsPerPage)
+        res.send({data:result,totalPages:totalPages})
+    }else{
+        const count= await UserModal.count({gender:gender})
+        const totalPages = Math.ceil(count / resultsPerPage);
+        const result= await UserModal.find({gender:gender}).skip(skip).limit(resultsPerPage)
+        res.send({data:result,totalPages:totalPages})
+    }
+    
 })
 app.delete("/deleteusers",async(req,res)=>{
     const result= await UserModal.deleteMany()
