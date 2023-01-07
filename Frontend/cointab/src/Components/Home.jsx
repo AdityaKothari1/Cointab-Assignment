@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
+import { Box, Button } from '@chakra-ui/react';
 const Home = () => {
     const [isFetching, setIsFetching] = useState(false);
     const navigate=useNavigate()
@@ -25,11 +26,11 @@ const Home = () => {
         navigate("/user")
     }
   return (
-    <div>
-       <button onClick={handleFetch}>Fetch Users</button> 
-        <button onClick={handleDelete}>Delete Users</button> 
-       <button onClick={handleUser}>Users Details</button> 
-    </div>
+    <Box style={{width:"40%",margin:"auto",marginTop:"20px",display:"flex",gap:"30px"}}>
+       <Button colorScheme={"blackAlpha"} onClick={handleFetch}>Fetch Users</Button> 
+        <Button colorScheme={"blackAlpha"} onClick={handleDelete}>Delete Users</Button> 
+       <Button colorScheme={"blackAlpha"} onClick={handleUser}>Users Details</Button> 
+    </Box>
   )
 }
 
