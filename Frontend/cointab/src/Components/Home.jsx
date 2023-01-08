@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
-import { Box, Button } from '@chakra-ui/react';
+import { Box, Button, useToast } from '@chakra-ui/react';
 const Home = () => {
     const [isFetching, setIsFetching] = useState(false);
     const navigate=useNavigate()
+    const toast = useToast()
     const handleFetch = () => {
       if (isFetching) {
         alert('Fetch is already in progress. Please wait.');
@@ -12,7 +13,12 @@ const Home = () => {
       }
       setIsFetching(true);
       axios.post("https://cointab-6oaj.onrender.com/adduser").then((res)=>{
-        // alert(res.data.msg);
+        toast({
+          title: 'Data Added Succesfully.',
+          status: 'success',
+          duration: 1000,
+          isClosable: true,
+        })
         setIsFetching(false);
       })
     }
