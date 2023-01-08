@@ -3,7 +3,7 @@ require("dotenv").config()
 const connection = mongoose.connect(
   process.env.Mongo_URL
 );
-mongoose.set('strictQuery', true)
+mongoose.set('strictQuery', false)
 const UserSchema =new mongoose.Schema({
   gender: {
     type: String,

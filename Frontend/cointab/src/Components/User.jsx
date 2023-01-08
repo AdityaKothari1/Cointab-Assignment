@@ -11,7 +11,7 @@ const User = () => {
     const [totalPages,setTotal]=useState(1)
      const [gender,setGender]=useState("")
     useEffect(()=>{
-         axios.get(`http://localhost:8000/getuser?page=${page}&gender=${gender}`).then((res)=>{
+         axios.get(`https://cointab-6oaj.onrender.com/getuser?page=${page}&gender=${gender}`).then((res)=>{
            setData(res.data.data)
            setTotal(res.data.totalPages)
          })

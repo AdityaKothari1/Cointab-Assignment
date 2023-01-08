@@ -11,14 +11,14 @@ const Home = () => {
         return;
       }
       setIsFetching(true);
-      axios.post("http://localhost:8000/adduser").then((res)=>{
+      axios.post("https://cointab-6oaj.onrender.com/adduser").then((res)=>{
         // alert(res.data.msg);
         setIsFetching(false);
       })
     }
     const handleDelete=()=>{
         alert('Are you Sure All Data will be deleted into the Database');
-        axios.delete("http://localhost:8000/deleteusers").then((res)=>{
+        axios.delete("https://cointab-6oaj.onrender.com/deleteusers").then((res)=>{
             alert(res.data.msg);
         })
     }
